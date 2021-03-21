@@ -1,0 +1,7 @@
+Discord Link Project
+
+Discord Link gives out your messages loud, and logs them.
+
+Just replace the token with yours or download the exe file!
+
+This project is not complete, im working on it!
