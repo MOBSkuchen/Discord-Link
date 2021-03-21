@@ -2,10 +2,12 @@
 #heres the code:
 import random, string, discord
 verified = "false"
+#verify code
 def get_random_str(length):
     letters = string.ascii_lowercase
     scc = ''.join(random.choice(letters) for i in range(length))
     return scc
+#speech
 def say(author, content):
     author = author[:-5]
     sads = (author + "says:" + content)
@@ -27,6 +29,7 @@ def say(author, content):
             text = """<pitch middle="{0}" > {1} </pitch> """.format(tonLage, textApp)
             self.speaker.Speak(text)
     a = Sprecher()
+#verification
 def decline_svr():
     print("Session not verified.")
     print("Try again.")
@@ -41,6 +44,7 @@ def verify():
     scc = (get_random_str(5))
     name = input("What is your Discord-Name? (+Tag) ")
     print("Ok, your Code is " + scc + " usage: !verify " + scc)
+#bot:
 class MyClient(discord.Client):
     async def on_ready(self):
         print('Logged in as ' + str(self.user))
@@ -54,10 +58,15 @@ class MyClient(discord.Client):
             cmt = ("You got notified by " + smc)
             print(cmt)
         if message.content.startswith("!verify "):
+            #verify process
+            #get author
             un = str("{0.author}".format(message))
             if un == name:
+                #get whole message
                 con = str("{0.content}".format(message))
+                #delete user message
                 await message.delete()
+                #get the code from user
                 de = con.replace("!verify ", "")
                 if de == scc:
                     await message.channel.send("User Session verified.")
@@ -69,13 +78,16 @@ class MyClient(discord.Client):
                 await message.channel.send("User Session not verified.")
                 decline_svr()
         if message.content.startswith(''):
+            #get non command messages
             author = str("{0.author}".format(message))
             con = str("{0.content}".format(message))
             if verified == "true":
+                #say the message
                 say(author, con)
+                #print the message
                 print(author + ": " + con)
 client = MyClient()
-client.run('ODEwOTcxODMwNzYwMjQzMjMx.YCraXw.r60OkWgNAdfYEli6mRb2IaVUeN8')
+client.run('ODEwOTcxODMwNzYwMjQzMjMx.YCraXw.r60OkWgNAdfYEli6mRb2IaVUeN8') #this token doesnt work! 
 #and heres a cat
 #                           |        |
 #                           |\      /|
